@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Promesas Restaurante</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="hero">
+    <h1>🍽️ Bienvenido a Promesas Restaurante</h1>
+    <button id="verMenuBtn">Ver Menú</button>
+  </div>
+
+  <section id="menu" class="menu oculto">
+    <h2>A continuación te mostraremos el menú</h2>
+    <p>Selecciona en orden: <strong>Bebida → Comida → Postre</strong></p>
+
+    <div class="categoria">
+      <h3>🥤 Bebidas</h3>
+      <label><input type="radio" name="bebida" value="Coca Cola"> Coca Cola</label>
+      <label><input type="radio" name="bebida" value="Jugo de Naranja"> Jugo de Naranja</label>
+      <label><input type="radio" name="bebida" value="Agua Mineral"> Agua Mineral</label>
+    </div>
+
+    <div class="categoria">
+      <h3>🍔 Comidas</h3>
+      <label><input type="radio" name="comida" value="Hamburguesa"> Hamburguesa</label>
+      <label><input type="radio" name="comida" value="Pizza"> Pizza</label>
+      <label><input type="radio" name="comida" value="Ensalada"> Ensalada</label>
+    </div>
+
+    <div class="categoria">
+      <h3>🍰 Postres</h3>
+      <label><input type="radio" name="postre" value="Pastel de Chocolate"> Pastel de Chocolate</label>
+      <label><input type="radio" name="postre" value="Helado"> Helado</label>
+      <label><input type="radio" name="postre" value="Fruta"> Fruta</label>
+    </div>
+
+    <button id="realizarPedidoBtn">Realizar Pedido</button>
+    <div id="resultado"></div>
+  </section>
+
+  <footer>
+    <p>
+      Desarrollado por 
+      <a href="https://github.com/zander1612" target="_blank">
+        <img src="https://cdn-icons-png.flaticon.com/512/25/25231.png" alt="GitHub" class="github-icon">
+        Zander Osuna
+      </a>
+    </p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
