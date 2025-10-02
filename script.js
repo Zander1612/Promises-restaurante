@@ -1,3 +1,9 @@
+
+
+const estatusPedido = () => {
+  return Math.random() < 0.3; 
+};
+
 // Botones y div de resultado
 const verMenuBtn = document.getElementById('verMenuBtn');
 const menu = document.getElementById('menu');
@@ -25,24 +31,28 @@ function obtenerPedido() {
 // Promesa para "ordenar" el pedido
 function ordenarProducto(pedido) {
   return new Promise((resolve, reject) => {
-    console.log(`Ordenando: ${pedido.bebida}, ${pedido.comida}, ${pedido.postre}`);
+    console.log(`📋 Ordenando: ${pedido.bebida}, ${pedido.comida}, ${pedido.postre}`);
     setTimeout(() => {
-      if (Math.random() < 0.7) { // 30% éxito
-        resolve(`Pedido confirmado: Bebida - ${pedido.bebida}, Comida - ${pedido.comida}, Postre - ${pedido.postre}`);
+      if (estatusPedido()) { // 70% éxito
+        resolve(`✅ Pedido confirmado: Bebida - ${pedido.bebida}, Comida - ${pedido.comida}, Postre - ${pedido.postre}`);
       } else {
-        reject('❌ Ocurrio un error, la orden fue cancelada.');
+        reject('❌ Ocurrió un error, la orden fue cancelada.');
       }
     }, 2000);
   });
 }
 
 // Promesa para "procesar" el pedido
-function procesarPedido(respuesta) {
+function procesarPedido(pedido) {
   return new Promise((resolve) => {
-    console.log('Procesando pedido...');
-    console.log(`Detalles recibidos: ${respuesta}`);
+    console.log('⏳ Procesando pedido...');
     setTimeout(() => {
-      resolve('✅ Gracias por tu compra. ¡Disfruta tu pedido!');
+      resolve(`
+        ✅ Gracias por tu compra. Disfruta tu pedido:<br>
+        🥤 Bebida: ${pedido.bebida}<br>
+        🍽️ Comida: ${pedido.comida}<br>
+        🍰 Postre: ${pedido.postre}
+      `);
     }, 2000);
   });
 }
@@ -58,13 +68,13 @@ async function realizarPedido() {
   resultado.textContent = '⏳ Procesando pedido...';
   try {
     const respuesta = await ordenarProducto(pedido);
-    console.log('Respuesta recibida');
-    const respuestaProcesada = await procesarPedido(respuesta);
-    resultado.textContent = respuestaProcesada;
+    console.log('Respuesta recibida:', respuesta);
+
+    const respuestaProcesada = await procesarPedido(pedido);
+    resultado.innerHTML = respuestaProcesada; 
   } catch (error) {
     resultado.textContent = error;
   }
 }
 
-// Conectar botón con la función
 realizarPedidoBtn.addEventListener('click', realizarPedido);
